@@ -1,8 +1,18 @@
 # Static routing
+import os,math,re
+
+from flask import Flask,requests,g,flash,render_template,session,abort,url_for,redirect
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+	return render_template('index.html')
 
 @app.route('/biscuit')
 def staticroutingbiscuit(): 
-	return render_template('index.html')
+	imageURl = "http://www.dealerbid.co.uk/news/wp-content/uploads/2012/10/ferrari-f121.jpg"
+	return render_template('biscuit.html', imageURL = imageURL )
 
 # dynamic routing
 @app.route('/SteveJobs/<int:post_id>')
@@ -45,3 +55,7 @@ def takeoutSession():
 	session.pop('age', None)
 	return redirect(url_for('index'))
 	
+if __name__ == '__main__':
+	app.debug = True
+	port= int(os.environ.get("PORT", 5000))
+	app.run(host= "127.0.0.1", port = port)	
